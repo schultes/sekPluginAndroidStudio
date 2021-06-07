@@ -1,0 +1,144 @@
+<idea-plugin>
+    <id>drhd.sequalsk</id>
+    <name>SequalsK</name>
+    <vendor email="daniel.rhode@iem.thm.de">Daniel Rhode</vendor>
+    <description><![CDATA[
+    "SequalsK" is a bidirectional Swift-Kotlin transpiler (see https://transpile.iem.thm.de/ for details).<br><br>
+
+    This plugin integrates the functionality of the transpiler into Android Studio and includes the following features:<br>
+    <ul>
+        <li>Translations of the editor content</li>
+        <li>Automatic translations when the content of the editor changes or new files are selected</li>
+        <li>Translation of directories including creation of the corresponding .swift files</li>
+        <li>Translation in two-way mode (display of code that was translated from Kotlin to Swift and back to Kotlin)</li>
+        <li>Tools to analyze translation results automatically and manually</li>
+    </ul>
+
+    ]]></description>
+
+
+    <version>1.1.0</version>
+
+    <depends>org.jetbrains.kotlin</depends>
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.java</depends>
+
+    <idea-version since-build="202.7660.26" until-build="203.*"/>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- settings -->
+        <applicationService
+                serviceImplementation="drhd.sequalsk.platform.services.settings.application.ApplicationSettingsService"/>
+        <applicationConfigurable
+                parentId="tools"
+                instance="drhd.sequalsk.platform.services.settings.application.ApplicationSettingsConfigurable"
+                id="drhd.sequalsk.platform.services.settings.application.ApplicationSettingsConfigurable"
+                displayName="SequalsK Settings (Application)"/>
+
+        <applicationService
+                serviceImplementation="drhd.sequalsk.platform.services.settings.project.ProjectSettingsService"/>
+        <projectConfigurable
+                parentId="tools"
+                instance="drhd.sequalsk.platform.services.settings.project.ProjectSettingsConfigurable"
+                id="drhd.sequalsk.platform.services.settings.project.ProjectSettingsConfigurable"
+                displayName="SequalsK Settings (Project)"
+                nonDefaultProject="true"/>
+
+        <postStartupActivity implementation="drhd.sequalsk.platform.ProjectStartupActivity"/>
+
+        <!-- services -->
+        <projectService serviceImplementation="drhd.sequalsk.platform.services.fileservice.FileContentChangeService"/>
+        <projectService serviceImplementation="drhd.sequalsk.platform.services.fileservice.FileSelectionService"/>
+        <projectService serviceImplementation="drhd.sequalsk.platform.services.transpiler.TranspilerService"/>
+        <projectService serviceImplementation="drhd.sequalsk.platform.services.transpiler.TranspilerServiceCache"/>
+        <projectService serviceImplementation="drhd.sequalsk.platform.services.feedback.TranspilerFeedbackService"/>
+        <projectService serviceImplementation="drhd.sequalsk.platform.services.feedback.TranspilerFeedbackEditorService"/>
+
+        <toolWindow
+                id="SequalsK Transpiler"
+                anchor="right"
+                factoryClass="drhd.sequalsk.platform.services.toolwindow.SequalskToolWindowFactory"/>
+        <projectService serviceImplementation="drhd.sequalsk.platform.services.toolwindow.ToolWindowService"/>
+
+        <!-- line marker provider -->
+        <codeInsight.lineMarkerProvider language="kotlin" implementationClass="drhd.sequalsk.platform.services.feedback.TranspilerFeedbackLineMarkerProvider"/>
+
+    </extensions>
+
+    <actions>
+
+        <!-- Tools menu group -->
+        <group id="sequalsk.toolsMenuGroup"
+               text="SequalsK Plugin"
+               popup="true">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </group>
+
+        <!-- Editor Popup Menu Group -->
+        <group id="sequalsk.editorPopupMenuGroup">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+        </group>
+
+        <!-- Tool Window Result Tab Dropdown Group -->
+        <group id="sequalsk.ResultTabDropdownGroup"
+               class="drhd.sequalsk.platform.services.toolwindow.tabs.result.actions.ResultTabDropdownGroup"
+               icon="AllIcons.Actions.More"
+               popup="true">
+        </group>
+
+        <!-- Transpile Directory Action -->
+        <action id="sequalsk.TranspileDirectoryAction"
+                class="drhd.sequalsk.platform.actions.TranspileDirectoryAction"
+                icon="AllIcons.Nodes.IdeaProject"
+                text="Transpile Project">
+            <add-to-group group-id="sequalsk.editorPopupMenuGroup" anchor="after" relative-to-action="sequalsk.TranspileFileTwoWayAction"/>
+            <add-to-group group-id="sequalsk.toolsMenuGroup" anchor="after" relative-to-action="sequalsk.TranspileFileTwoWayAction"/>
+            <add-to-group group-id="EditorContextBarMenu" anchor="after" relative-to-action="sequalsk.TranspileFileTwoWayAction"/>
+        </action>
+
+        <!-- Transpile File Action (One-way) -->
+        <action id="sequalsk.TranspileFileOneWayAction"
+                class="drhd.sequalsk.platform.actions.TranspileFileOneWayAction"
+                icon="AllIcons.Scope.ChangedFiles"
+                text="Transpile File (One-Way)">
+
+            <add-to-group group-id="sequalsk.editorPopupMenuGroup" anchor="after" relative-to-action="sequalsk.TranspileSelectionOneWayAction"/>
+            <add-to-group group-id="sequalsk.toolsMenuGroup" anchor="after" relative-to-action="sequalsk.TranspileSelectionOneWayAction"/>
+            <add-to-group group-id="EditorContextBarMenu" anchor="after" relative-to-action="sequalsk.TranspileSelectionOneWayAction"/>
+        </action>
+
+        <!-- Transpile File Action (Two-way) -->
+        <action id="sequalsk.TranspileFileTwoWayAction"
+                class="drhd.sequalsk.platform.actions.TranspileFileTwoWayAction"
+                icon="AllIcons.Scope.ChangedFilesAll"
+                text="Transpile File (Two-Way)">
+
+            <add-to-group group-id="sequalsk.editorPopupMenuGroup" anchor="after" relative-to-action="sequalsk.TranspileFileOneWayAction"/>
+            <add-to-group group-id="sequalsk.toolsMenuGroup" anchor="after" relative-to-action="sequalsk.TranspileFileOneWayAction"/>
+            <add-to-group group-id="EditorContextBarMenu" anchor="after" relative-to-action="sequalsk.TranspileFileOneWayAction"/>
+        </action>
+
+        <!-- Transpile Selection Action One-Way -->
+        <action id="sequalsk.TranspileSelectionOneWayAction"
+                class="drhd.sequalsk.platform.actions.TranspileSelectionOneWayAction"
+                icon="AllIcons.Actions.InSelection"
+                text="Transpile Selection (One-Way)">
+
+            <add-to-group group-id="sequalsk.editorPopupMenuGroup" anchor="first"/>
+            <add-to-group group-id="sequalsk.toolsMenuGroup" anchor="first"/>
+            <add-to-group group-id="EditorContextBarMenu" anchor="first"/>
+        </action>
+
+        <!-- Transpile Selection Action Two-Way -->
+        <action id="sequalsk.TranspileSelectionTwoWayAction"
+                class="drhd.sequalsk.platform.actions.TranspileSelectionTwoWayAction"
+                icon="/icons/InSelectionMulti.svg"
+                text="Transpile Selection (Two-Way)">
+            <add-to-group group-id="sequalsk.editorPopupMenuGroup" anchor="after" relative-to-action="sequalsk.TranspileSelectionOneWayAction"/>
+            <add-to-group group-id="sequalsk.toolsMenuGroup" anchor="after" relative-to-action="sequalsk.TranspileSelectionOneWayAction"/>
+            <add-to-group group-id="EditorContextBarMenu" anchor="after" relative-to-action="sequalsk.TranspileSelectionOneWayAction"/>
+        </action>
+
+    </actions>
+
+</idea-plugin>

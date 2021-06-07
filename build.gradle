@@ -1,0 +1,31 @@
+plugins {
+    id "java"
+    id "org.jetbrains.intellij" version "0.6.5"
+    id "org.jetbrains.kotlin.jvm" version "1.4.21"
+    id "antlr"
+}
+
+group 'drhd.sequalsk'
+version '1.1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'commons-io', name: 'commons-io', version: '2.8.0'
+    compile group: "com.squareup.okhttp3", name: "okhttp", version: "4.9.0"
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    antlr "org.antlr:antlr4:4.9"
+    compile fileTree(dir: '/libs', include: '*.jar')
+}
+
+intellij {
+    version '2020.2.1'
+    plugins 'org.jetbrains.kotlin', 'java'
+}
+
+runPluginVerifier {
+    ideVersions "2020.2.1"
+    localPaths []
+}

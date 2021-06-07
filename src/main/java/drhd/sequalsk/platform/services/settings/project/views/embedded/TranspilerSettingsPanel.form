@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="drhd.sequalsk.platform.services.settings.project.views.embedded.TranspilerSettingsPanel">
+  <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="703" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <grid id="a9fe" layout-manager="GridLayoutManager" row-count="3" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="a7411" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Request Type:"/>
+            </properties>
+          </component>
+          <component id="b8233" class="javax.swing.JRadioButton" binding="radioButtonOneWay">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <margin top="3" left="3" bottom="3" right="3"/>
+              <text value="One-way"/>
+            </properties>
+          </component>
+          <component id="9688e" class="javax.swing.JRadioButton" binding="radioButtonTwoWay">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Two-way"/>
+            </properties>
+          </component>
+          <component id="ed54d" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Context Mode:"/>
+            </properties>
+          </component>
+          <component id="545c" class="javax.swing.JRadioButton" binding="radioButtonAccurateContextMode">
+            <constraints>
+              <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Accurate"/>
+            </properties>
+          </component>
+          <component id="563d3" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Result Cache:"/>
+            </properties>
+          </component>
+          <component id="f3d11" class="javax.swing.JCheckBox" binding="checkBoxCacheActive">
+            <constraints>
+              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Active"/>
+            </properties>
+          </component>
+          <component id="df547" class="javax.swing.JRadioButton" binding="radioButtonProjectContextMode">
+            <constraints>
+              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Project"/>
+            </properties>
+          </component>
+          <component id="1d614" class="javax.swing.JRadioButton" binding="radioButtonFastContextMode">
+            <constraints>
+              <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Fast"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <vspacer id="422c6">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </vspacer>
+      <hspacer id="1d659">
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </hspacer>
+    </children>
+  </grid>
+  <buttonGroups>
+    <group name="transpilerModeButtonGroup">
+      <member id="986f1"/>
+      <member id="986f1"/>
+      <member id="d380a"/>
+      <member id="3409b"/>
+      <member id="1d148"/>
+    </group>
+    <group name="requestTypeButtonGroup">
+      <member id="7f624"/>
+      <member id="7f624"/>
+      <member id="19728"/>
+      <member id="b8233"/>
+      <member id="9688e"/>
+    </group>
+    <group name="contextTypeButtonGroup">
+      <member id="5499b"/>
+      <member id="5499b"/>
+      <member id="49d39"/>
+      <member id="1d614"/>
+      <member id="df547"/>
+      <member id="545c"/>
+    </group>
+  </buttonGroups>
+</form>
