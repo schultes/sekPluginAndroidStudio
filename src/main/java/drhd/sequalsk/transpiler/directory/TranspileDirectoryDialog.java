@@ -58,9 +58,9 @@ public class TranspileDirectoryDialog extends DialogWrapper {
         textFieldOutputDirectory.addBrowseFolderListener(new TextBrowseFolderListener(descriptor));
 
         startButton.addActionListener(actionEvent -> {
-            // dialog to confirm the input directory
+            // dialog to confirm the output directory
             SimpleDialogBuilder builder = new SimpleDialogBuilder("Confirmation");
-            builder.addLabel("All files of the input directory");
+            builder.addLabel("All files of the output directory");
             builder.addLabel("\t" + getOutputDirectory());
             builder.addLabel("will be lost. Continue?");
             builder.withCancelAction();
