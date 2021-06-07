@@ -34,16 +34,23 @@ public class TranspilerContext extends MetaDataHolderImpl {
         this.mainFile = allFiles.get(0);
         allFiles.remove(0);
         additionalFiles = allFiles;
+        removeFilesThatShouldBeIgnored();
     }
 
     public TranspilerContext(TranspilerRequestFile mainFile, List<TranspilerRequestFile> additionalFiles) {
         this.mainFile = mainFile;
         this.additionalFiles = additionalFiles;
+        removeFilesThatShouldBeIgnored();
     }
 
     public TranspilerContext(TranspilerRequestFile mainFile, TranspilerRequestFile... additionalFiles) {
         this.mainFile = mainFile;
         this.additionalFiles = Arrays.asList(additionalFiles);
+        removeFilesThatShouldBeIgnored();
+    }
+
+    private void removeFilesThatShouldBeIgnored() {
+        additionalFiles.removeIf(file -> file.getName().equals("swiftSupportInKotlin.kt"));
     }
 
     /** @see TranspilerContext#mainFile */
