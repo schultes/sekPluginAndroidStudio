@@ -49,7 +49,7 @@ public class TranspilerFeedbackLineMarkerProvider extends LineMarkerProviderDesc
         return new LineMarkerInfo(
                 leafElement,
                 leafElement.getTextRange(),
-                PluginIcons.SwiftLangRed,
+                PluginIcons.SeK,
                 tooltip -> item.getOriginalItem().getFeedback(),
                 null,
                 GutterIconRenderer.Alignment.CENTER

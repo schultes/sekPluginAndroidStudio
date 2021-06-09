@@ -1,9 +1,11 @@
-<idea-plugin>
+<idea-plugin url="https://transpile.iem.thm.de/">
     <id>drhd.sequalsk</id>
     <name>SequalsK</name>
-    <vendor email="daniel.rhode@iem.thm.de">Daniel Rhode</vendor>
+    <vendor email="dominik.schultes@iem.thm.de">Dominik Schultes</vendor>
     <description><![CDATA[
     "SequalsK" is a bidirectional Swift-Kotlin transpiler (see https://transpile.iem.thm.de/ for details).<br><br>
+
+    The first version of this plugin has been developed by Daniel Rhode. The current version is maintained by Dominik Schultes.
 
     This plugin integrates the functionality of the transpiler into Android Studio and includes the following features:<br>
     <ul>
@@ -17,7 +19,7 @@
     ]]></description>
 
 
-    <version>1.1.0</version>
+    <version>1.2.0</version>
 
     <depends>org.jetbrains.kotlin</depends>
     <depends>com.intellij.modules.platform</depends>
