@@ -65,7 +65,8 @@ public class TwoWayResultConverter {
                 originalRequest,
                 finalMainFile,
                 finalTranspiledFiles,
-                transpilerResult.getTranspilerResponse()
+                transpilerResult.getTranspilerResponse(),
+                transpilerResult.getTranspilerFeedback()
         );
     }
 }

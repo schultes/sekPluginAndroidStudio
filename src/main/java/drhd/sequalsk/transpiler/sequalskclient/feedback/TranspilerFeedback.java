@@ -1,5 +1,6 @@
 package drhd.sequalsk.transpiler.sequalskclient.feedback;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,11 +11,7 @@ public class TranspilerFeedback {
     /**
      * List of the items that represent the actual feedback messages of the transpiler.
      */
-    private final List<TranspilerFeedbackItem> feedbackItemList;
-
-    public TranspilerFeedback(List<TranspilerFeedbackItem> feedbackItemList) {
-        this.feedbackItemList = feedbackItemList;
-    }
+    private final List<TranspilerFeedbackItem> feedbackItemList = new ArrayList<>();
 
     /** {@link #feedbackItemList} */
     public List<TranspilerFeedbackItem> getFeedbackItemList() {

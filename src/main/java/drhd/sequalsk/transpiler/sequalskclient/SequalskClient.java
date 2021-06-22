@@ -1,6 +1,8 @@
 package drhd.sequalsk.transpiler.sequalskclient;
 
 
+import drhd.sequalsk.transpiler.sequalskclient.feedback.TranspilerFeedback;
+import drhd.sequalsk.transpiler.sequalskclient.feedback.TranspilerFeedbackExtractor;
 import drhd.sequalsk.transpiler.sequalskclient.request.TranspilerRequest;
 import drhd.sequalsk.transpiler.sequalskclient.request.TranspilerContext;
 import drhd.sequalsk.transpiler.sequalskclient.result.TranspilerResult;
@@ -79,6 +81,10 @@ public class SequalskClient {
 
         /* transpile code */
         String transpiledCode = transpiler.transpile(request, config);
+        final TranspilerFeedback feedback = new TranspilerFeedback();
+        if (request.getInputLanguage() == TranspilerLanguage.KOTLIN) {
+            transpiledCode = TranspilerFeedbackExtractor.extractFeedback(transpiledCode, feedback);
+        }
 
         TranspilerResponseSplitter splitter = new TranspilerResponseSplitter(request.getContext());
         splitter.split(transpiledCode);
@@ -87,7 +93,8 @@ public class SequalskClient {
                 request,
                 splitter.getMainFile(),
                 splitter.getAdditionalFiles(),
-                transpiledCode
+                transpiledCode,
+                feedback
         );
     }
 }

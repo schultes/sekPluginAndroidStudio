@@ -2,7 +2,6 @@ package drhd.sequalsk.transpiler.sequalskclient.result;
 
 
 import drhd.sequalsk.transpiler.sequalskclient.feedback.TranspilerFeedback;
-import drhd.sequalsk.transpiler.sequalskclient.feedback.DummyFeedbackProvider;
 import drhd.sequalsk.transpiler.sequalskclient.request.TranspilerRequest;
 import drhd.sequalsk.transpiler.sequalskclient.request.TranspilerContext;
 
@@ -34,17 +33,24 @@ public class TranspilerResult {
      */
     private final List<TranspiledFile> additionalFiles;
 
+    /**
+     * Converted feedback received by the SequalsK-Transpiler.
+     */
+    private final TranspilerFeedback feedback;
+
     /** {@link TranspilerResult} */
     public TranspilerResult(
             TranspilerRequest request,
             TranspiledFile mainFile,
             List<TranspiledFile> additionalFiles,
-            String transpilerResponse
+            String transpilerResponse,
+            TranspilerFeedback feedback
     ) {
         this.request = request;
         this.mainFile = mainFile;
         this.additionalFiles = additionalFiles;
         this.transpilerResponse = transpilerResponse;
+        this.feedback = feedback;
     }
 
     /**
@@ -99,7 +105,7 @@ public class TranspilerResult {
      * Converted feedback received by the SequalsK-Transpiler.
      */
     public TranspilerFeedback getTranspilerFeedback() {
-        return DummyFeedbackProvider.generateFeedback();
+        return feedback;
     }
 
     @Override

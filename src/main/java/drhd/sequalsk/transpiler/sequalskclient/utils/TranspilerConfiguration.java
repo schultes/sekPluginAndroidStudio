@@ -38,6 +38,8 @@ public class TranspilerConfiguration {
     }
 
     public static String generateRequestUrl(TranspilerConfiguration config, TranspilerLanguage language) {
-        return config.getHost() + config.getPostRequestPath() + "/?input=" + language.getName();
+        String url = config.getHost() + config.getPostRequestPath() + "/?input=" + language.getName();
+        if (language == TranspilerLanguage.KOTLIN) url += "&feedback=true";
+        return url;
     }
 }

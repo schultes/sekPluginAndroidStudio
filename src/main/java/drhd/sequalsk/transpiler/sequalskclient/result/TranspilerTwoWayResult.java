@@ -19,7 +19,8 @@ public class TranspilerTwoWayResult extends TranspilerResult {
                 interimResult.getRequest(),
                 finalResult.getMainFile(),
                 finalResult.getAdditionalFiles(),
-                finalResult.getTranspilerResponse()
+                finalResult.getTranspilerResponse(),
+                interimResult.getTranspilerFeedback()
         );
         this.interimResult = interimResult;
     }
