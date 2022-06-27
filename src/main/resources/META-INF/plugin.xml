@@ -16,10 +16,13 @@
         <li>Tools to analyze translation results automatically and manually</li>
     </ul>
 
+    Note that the actual transpilation takes place at the server "transpile.iem.thm.de" and the transpiler itself is currently 'closed source'.
+    In other words, this plugin just provides a convenient user interface for the transpiler backend.
+
     ]]></description>
 
 
-    <version>1.2.2</version>
+    <version>1.2.3</version>
 
     <depends>org.jetbrains.kotlin</depends>
     <depends>com.intellij.modules.platform</depends>
