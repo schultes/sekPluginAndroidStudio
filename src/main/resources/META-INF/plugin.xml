@@ -23,7 +23,7 @@
 
     <change-notes>
         <![CDATA[
-        Ensured compatibility with IntelliJ IDEA 2024.1 and Android Studio Iguana | 2023.2.1 Patch 1.
+        Ensured compatibility with IntelliJ IDEA 2024.3 and Android Studio Ladybug | 2024.2.1.
         ]]>
     </change-notes>
 
@@ -33,6 +33,11 @@
     <depends>org.jetbrains.kotlin</depends>
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.java</depends>
+
+    <!-- added according to https://kotlin.github.io/analysis-api/declaring-k2-compatibility.html -->
+    <extensions defaultExtensionNs="org.jetbrains.kotlin">
+        <supportsKotlinPluginMode supportsK2="true" />
+    </extensions>
 
     <extensions defaultExtensionNs="com.intellij">
         <!-- settings -->
