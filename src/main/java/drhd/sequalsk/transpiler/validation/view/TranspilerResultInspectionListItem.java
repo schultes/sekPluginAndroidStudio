@@ -1,7 +1,6 @@
 package drhd.sequalsk.transpiler.validation.view;
 
 import com.intellij.openapi.actionSystem.*;
-import com.intellij.openapi.actionSystem.impl.ActionToolbarImpl;
 import drhd.sequalsk.transpiler.validation.TranspilerResultInspection;
 import javax.swing.*;
 import java.awt.*;
@@ -32,7 +31,7 @@ public class TranspilerResultInspectionListItem extends JPanel {
             dropdownGroup.addAll(warningActions);
             defaultActionGroup.add(dropdownGroup);
 
-            ActionToolbarImpl actionToolbar = new ActionToolbarImpl(warning.getTitle(), defaultActionGroup, true);
+            ActionToolbar actionToolbar = ActionManager.getInstance().createActionToolbar(warning.getTitle(), defaultActionGroup, true);
             this.add(actionToolbar.getComponent());
         }
     }
