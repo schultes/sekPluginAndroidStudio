@@ -23,7 +23,7 @@
 
     <change-notes>
         <![CDATA[
-        Ensured compatibility with IntelliJ IDEA 2024.3 and Android Studio Ladybug | 2024.2.1.
+        Ensured compatibility with future versions of IntelliJ IDEA and Android Studio.
         ]]>
     </change-notes>
 
